@@ -118,3 +118,110 @@ if app_mode == 'Introduction':
 
     else:
         st.success("Poor data quality due to low completeness ratio( less than 0.85).")
+
+if app_mode == 'Visualization':
+    # Display a header for the Visualization section
+    st.markdown("## Visualization")
+
+    # Allow users to select two variables from the dataset for visualization
+    symbols = st.multiselect("Select two variables", list_variables, ["quality", "citric acid"])
+
+    # Create a slider in the sidebar for users to adjust the plot width
+    width1 = st.sidebar.slider("plot width", 1, 25, 10)
+
+    # Create tabs for different types of visualizations
+    tab1, tab2 = st.tabs(["Line Chart", "📈 Correlation"])
+
+    # Content for the "Line Chart" tab
+    tab1.subheader("Line Chart")
+    # Display a line chart for the selected variables
+    st.line_chart(data=df, x=symbols[0], y=symbols[1], width=0, height=0, use_container_width=True)
+    # Display a bar chart for the selected variables
+    st.bar_chart(data=df, x=symbols[0], y=symbols[1], use_container_width=True)
+
+    # Content for the "Correlation" tab
+    tab2.subheader("Correlation Tab 📉")
+    # Create a heatmap to show correlations between variables in the dataset
+    fig, ax = plt.subplots(figsize=(width1, width1))
+    sns.heatmap(df.corr(), cmap=sns.cubehelix_palette(8), annot=True, ax=ax)
+    tab2.write(fig)
+
+    # Display a pairplot for the first five variables in the dataset
+    st.markdown("### Pairplot")
+    df2 = df
+
+    fig3 = sns.pairplot(df2)
+    st.pyplot(fig3)
+
+# Check if the app mode is set to 'Prediction'
+if app_mode == 'Prediction':
+    # Display a header for the Prediction section
+    st.markdown("## Prediction")
+
+    # Allow users to adjust the size of the training dataset using a slider in the sidebar
+    train_size = st.sidebar.number_input("Train Set Size", min_value=0.00, step=0.01, max_value=1.00, value=0.70)
+
+    # Drop the selected variable from the dataset to prepare for prediction
+    new_df = df.drop(labels=select_variable, axis=1)
+    list_var = new_df.columns
+
+    # Allow users to select explanatory variables for prediction
+    output_multi = st.multiselect("Select Explanatory Variables", list_var)
+
+# Define a function to perform linear regression prediction
+def predict(target_choice, train_size, new_df, output_multi):
+    """
+    This function performs linear regression prediction.
+
+    Parameters:
+    - target_choice: The target variable to be predicted.
+    - train_size: The proportion of the dataset to include in the training set.
+    - new_df: The dataframe without the target variable.
+    - output_multi: The explanatory variables selected by the user.
+
+    Returns:
+    - X_train, X_test: Training and testing data.
+    - y_train, y_test: Training and testing target values.
+    - predictions: Predicted values for the test set.
+    - x, y: Full dataset split into explanatory variables and target variable.
+    """
+
+    # Select the explanatory variables based on user input
+    new_df2 = new_df[output_multi]
+    x = new_df2
+    y = df[target_choice]
+
+    # Display the top 25 rows of the explanatory and target variables in the Streamlit app
+    col1, col2 = st.columns(2)
+    col1.subheader("Feature Columns top 25")
+    col1.write(x.head(25))
+    col2.subheader("Target Column top 25")
+    col2.write(y.head(25))
+
+    # Split the data into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_state=123)
+
+    # Initialize and train a linear regression model
+    lm = LinearRegression()
+    lm.fit(X_train,y_train)
+
+    # Predict the target variable for the test set
+    predictions = lm.predict(X_test)
+
+    return X_train, X_test, y_train, y_test, predictions, x, y
+
+# Call the prediction function and store the results
+X_train, X_test, y_train, y_test, predictions, x, y = predict(select_variable, train_size, new_df, list_var)
+
+# Display the results header in the Streamlit app
+st.subheader('🎯 Results')
+
+# Display various metrics about the prediction results in the Streamlit app >>>>>>>>>>>>
+st.write("1) The model explains,", np.round(mt.explained_variance_score(y_test, predictions)*100,2),"% variance of the target feature")
+
+st.write("2) The Mean Absolute Error of model is:", np.round(mt.mean_absolute_error(predictions,y_test  ),2))
+
+st.write("3) MSE: ", np.round(mt.mean_squared_error(predictions,y_test ),2))
+
+st.write("4) The R-Square score of the model is " , np.round(mt.r2_score(predictions, y_test),2))
+
