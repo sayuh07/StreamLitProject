@@ -168,6 +168,21 @@ def main():
         # Allow users to select explanatory variables for prediction
         output_multi = st.multiselect("Select Explanatory Variables", list_var)
 
+        # Call the prediction function and store the results
+        X_train, X_test, y_train, y_test, predictions, x, y = predict(select_variable, train_size, new_df, list_var)
+        
+        # Display the results header in the Streamlit app
+        st.subheader('🎯 Results')
+        
+        # Display various metrics about the prediction results in the Streamlit app >>>>>>>>>>>>
+        st.write("1) The model explains,", np.round(mt.explained_variance_score(y_test, predictions)*100,2),"% variance of the target feature")
+        
+        st.write("2) The Mean Absolute Error of model is:", np.round(mt.mean_absolute_error(predictions,y_test  ),2))
+        
+        st.write("3) MSE: ", np.round(mt.mean_squared_error(predictions,y_test ),2))
+        
+        st.write("4) The R-Square score of the model is " , np.round(mt.r2_score(predictions, y_test),2))
+
 # Define a function to perform linear regression prediction
 def predict(target_choice, train_size, new_df, output_multi):
     """
@@ -210,18 +225,4 @@ def predict(target_choice, train_size, new_df, output_multi):
 
     return X_train, X_test, y_train, y_test, predictions, x, y
 
-# Call the prediction function and store the results
-X_train, X_test, y_train, y_test, predictions, x, y = predict(select_variable, train_size, new_df, list_var)
-
-# Display the results header in the Streamlit app
-st.subheader('🎯 Results')
-
-# Display various metrics about the prediction results in the Streamlit app >>>>>>>>>>>>
-st.write("1) The model explains,", np.round(mt.explained_variance_score(y_test, predictions)*100,2),"% variance of the target feature")
-
-st.write("2) The Mean Absolute Error of model is:", np.round(mt.mean_absolute_error(predictions,y_test  ),2))
-
-st.write("3) MSE: ", np.round(mt.mean_squared_error(predictions,y_test ),2))
-
-st.write("4) The R-Square score of the model is " , np.round(mt.r2_score(predictions, y_test),2))
 
