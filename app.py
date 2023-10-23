@@ -140,7 +140,7 @@ def main():
         output_multi = st.multiselect("Select Explanatory Variables", list_var)
 
         # Call the prediction function and store the results
-        X_train, X_test, y_train, y_test, predictions, x, y = predict(select_variable, train_size, new_df, list_var)
+        X_train, X_test, y_train, y_test, predictions, x, y = prediction(select_variable, train_size, new_df, list_var)
         
         # Display the results header in the Streamlit app
         st.subheader('🎯 Results')
@@ -155,7 +155,7 @@ def main():
         st.write("4) The R-Square score of the model is " , np.round(mt.r2_score(predictions, y_test),2))
 
 # Define a function to perform linear regression prediction
-def predict(target_choice, train_size, new_df, output_multi):
+def prediction(target_choice, train_size, new_df, output_multi):
     """
     This function performs linear regression prediction.
 
