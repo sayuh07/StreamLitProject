@@ -15,35 +15,6 @@ from htbuilder import HtmlElement, div, hr, a, p, img, styles
 from htbuilder.units import percent, px
 
 def main():
-    def _max_width_():
-        max_width_str = f"max-width: 1000px;"
-        st.markdown(
-            f"""
-        <style>
-        .reportview-container .main .block-container{{
-            {max_width_str}
-        }}
-        </style>
-        """,
-            unsafe_allow_html=True,
-        )
-
-
-    # Hide the Streamlit header and footer
-    def hide_header_footer():
-        hide_streamlit_style = """
-                    <style>
-                    footer {visibility: hidden;}
-                    </style>
-                    """
-        st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
-    # increases the width of the text and tables/figures
-    _max_width_()
-
-    # hide the footer
-    hide_header_footer()
-
     image_nyu = Image.open('nyu.png')
     st.image(image_nyu, width=100)
     
