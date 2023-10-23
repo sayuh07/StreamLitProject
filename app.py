@@ -124,7 +124,7 @@ def main():
         st.markdown("## Visualization")
     
         # Allow users to select two variables from the dataset for visualization
-        symbols = st.multiselect("Select two variables", list_variables, ["quality", "citric acid"])
+        symbols = st.multiselect("Select two variables", list_variables, ["Type_of_vehicle", "Time_taken(min)"])
     
         # Create a slider in the sidebar for users to adjust the plot width
         width1 = st.sidebar.slider("plot width", 1, 25, 10)
