@@ -56,7 +56,7 @@ st.sidebar.markdown("---")
 app_mode = st.sidebar.selectbox('🔎 Select Page',['Introduction','Visualization','Prediction'])
 
 # Dropdown menu for selecting the dataset (currently only "Wine Quality" is available)
-select_dataset =  st.sidebar.selectbox('💾 Select Dataset',["Wine Quality"])
+select_dataset =  st.sidebar.selectbox('💾 Select Dataset',["Food Delivery Times"])
 
 # Load the wine quality dataset
 df = pd.read_csv("deliverytime.csv")
