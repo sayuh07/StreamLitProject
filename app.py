@@ -201,24 +201,24 @@ def main():
     st.markdown(f"####  Link to Project Website [here]({'https://github.com/NYU-DS-4-Everyone/Linear-Regression-App'}) 🚀 ")
 
 
-def predict(target_choice,train_size,new_df,output_multi):
-    #independent variables / explanatory variables
-    #choosing column for target
-    new_df2 = new_df["Delivery_person_Age"]
-    x = new_df2
-    y = df["Time_taken(min)"]
-    col1,col2 = st.columns(2)
-    col1.subheader("Feature Columns top 25")
-    col1.write(x.head(25))
-    col2.subheader("Target Column top 25")
-    col2.write(y.head(25))
-    X_train, X_test, y_train, y_test = train_test_split(x,y,test_size=train_size)
-    lm = LinearRegression()
-    lm.fit(X_train,y_train)
-    predictions = lm.predict(X_test)
-
-    return X_train, X_test, y_train, y_test, predictions,x,y
-   
+    def predict(target_choice,train_size,new_df,output_multi):
+        #independent variables / explanatory variables
+        #choosing column for target
+        new_df2 = new_df["Delivery_person_Age"]
+        x = new_df2
+        y = df["Time_taken(min)"]
+        col1,col2 = st.columns(2)
+        col1.subheader("Feature Columns top 25")
+        col1.write(x.head(25))
+        col2.subheader("Target Column top 25")
+        col2.write(y.head(25))
+        X_train, X_test, y_train, y_test = train_test_split(x,y,test_size=train_size)
+        lm = LinearRegression()
+        lm.fit(X_train,y_train)
+        predictions = lm.predict(X_test)
+        
+        return X_train, X_test, y_train, y_test, predictions,x,y
+       
 
 
 
