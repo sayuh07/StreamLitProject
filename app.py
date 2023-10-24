@@ -152,10 +152,16 @@ if app_mode == 'Visualization':
     st.write(" ")
     st.bar_chart(data=df, x=symbols[0], y=symbols[1], use_container_width=True)
 
-    data = df["Type_of_vehicle"].value_counts()
-    keys = ['motorcycle', 'scooter', 'electric_scooter', 'bicycle']
-    plt.pie(data, labels=keys, autopct='%.2f%%') 
-    plt.show() 
+    labels = 'motorcycle', 'scooter', 'electric_scooter', 'bicycle'
+    sizes = df["Type_of_vehicle"].value_counts()
+    explode = (0.1, 0, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
+
+    fig1, ax1 = plt.subplots()
+    ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+        shadow=True, startangle=90)
+    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+    st.pyplot(fig1)
 
     #tab2.subheader("Correlation Tab 📉")
     #fig,ax = plt.subplots(figsize=(width1, width1))
