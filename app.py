@@ -166,7 +166,7 @@ def main():
 
         df['Restaurant_latitude'] = pd.to_numeric(df['Restaurant_latitude'], errors='coerce')
         df['Restaurant_longitude'] = pd.to_numeric(df['Restaurant_longitude'], errors='coerce')
-        st.map(data=df, df[['Restaurant_latitude']], df[['Restaurant_longitude']])
+        st.map(data=df, df['Restaurant_latitude'], df['Restaurant_longitude'])
         
         
         #tab2.subheader("Correlation Tab 📉")
