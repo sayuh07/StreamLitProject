@@ -163,14 +163,7 @@ def main():
         # Ensure that you have the necessary columns in your DataFrame
         # Assuming 'Restaurant_latitude' and 'Restaurant_longitude' columns exist
         # Also, make sure that the data in these columns is in numeric format (float or int)
-
-        df['Restaurant_latitude'] = pd.to_numeric(df['Restaurant_latitude'], errors='coerce')
-        df['Restaurant_longitude'] = pd.to_numeric(df['Restaurant_longitude'], errors='coerce')
-        # Display the map
-        # Display the map with explicitly specified latitude and longitude columns
-        st.map(data=df, latitude='Restaurant_latitude', longitude='Restaurant_longitude')
-
-        
+  
         
         #tab2.subheader("Correlation Tab 📉")
         #fig,ax = plt.subplots(figsize=(width1, width1))
@@ -185,6 +178,12 @@ def main():
         df2 = df[[list_variables[0],list_variables[1],list_variables[2],list_variables[3],list_variables[4]]]
         fig3 = sns.pairplot(df2)
         st.pyplot(fig3)
+
+        df['Restaurant_latitude'] = pd.to_numeric(df['Restaurant_latitude'], errors='coerce')
+        df['Restaurant_longitude'] = pd.to_numeric(df['Restaurant_longitude'], errors='coerce')
+        # Display the map
+        # Display the map with explicitly specified latitude and longitude columns
+        st.map(data=df, latitude='Restaurant_latitude', longitude='Restaurant_longitude')
     
     
     
