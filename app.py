@@ -178,14 +178,13 @@ def main():
         st.write(" ")
         st.write(" ")
         st.markdown("## Pairplot")
-        
         df2 = df[[list_variables[0],list_variables[1],list_variables[2],list_variables[3],list_variables[4]]]
         fig3 = sns.pairplot(df2)
         st.pyplot(fig3)
 
         st.write(" ")
         st.write(" ")
-        st.markdown("### Restaurant Locations")
+        st.markdown("## Restaurant Locations")
         df['Restaurant_latitude'] = pd.to_numeric(df['Restaurant_latitude'], errors='coerce')
         df['Restaurant_longitude'] = pd.to_numeric(df['Restaurant_longitude'], errors='coerce')
         # Display the map
