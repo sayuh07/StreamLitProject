@@ -160,8 +160,14 @@ def main():
         
         st.pyplot(fig1)
 
-        st.dataframe(df)
+        # Ensure that you have the necessary columns in your DataFrame
+        # Assuming 'Restaurant_latitude' and 'Restaurant_longitude' columns exist
+        # Also, make sure that the data in these columns is in numeric format (float or int)
+
+        df['Restaurant_latitude'] = pd.to_numeric(df['Restaurant_latitude'], errors='coerce')
+        df['Restaurant_longitude'] = pd.to_numeric(df['Restaurant_longitude'], errors='coerce')
         st.map(data=df, latitude='Restaurant_latitude', longitude='Restaurant_longitude')
+
         
         
         #tab2.subheader("Correlation Tab 📉")
