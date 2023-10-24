@@ -168,7 +168,7 @@ def main():
         df['Restaurant_longitude'] = pd.to_numeric(df['Restaurant_longitude'], errors='coerce')
         # Display the map
         # Display the map with explicitly specified latitude and longitude columns
-        st.map(df, lat_column='Restaurant_latitude', lon_column='Restaurant_longitude', use_container_width=True)
+        st.map(df, latitude='Restaurant_latitude', longitude='Restaurant_longitude')
 
         
         
