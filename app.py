@@ -142,7 +142,7 @@ if app_mode == 'Introduction':
 
 if app_mode == 'Visualization':
     st.markdown("## Visualization")
-    symbols = st.multiselect("Select two variables",list_variables,["Type_of_vehicle", "Time_taken(min)"])
+    symbols = st.multiselect("Select two variables",list_variables,["Delivery_person_Age", "Type_of_vehicle", "Time_taken(min)"])
     width1 = st.sidebar.slider("plot width", 1, 25, 10)
     #symbols = st.multiselect("", list_variables, list_variables[:5])
     tab1, tab2= st.tabs(["Line Chart","📈 Correlation"])    
@@ -151,6 +151,11 @@ if app_mode == 'Visualization':
     st.line_chart(data=df, x=symbols[0],y=symbols[1], width=0, height=0, use_container_width=True)
     st.write(" ")
     st.bar_chart(data=df, x=symbols[0], y=symbols[1], use_container_width=True)
+
+    data = df["Type_of_vehicle"].value_counts()
+    keys = ['motorcycle', 'scooter', 'electric_scooter', 'bicycle']
+    plt.pie(data, labels=keys, autopct='%.2f%%') 
+    plt.show() 
 
     #tab2.subheader("Correlation Tab 📉")
     #fig,ax = plt.subplots(figsize=(width1, width1))
@@ -173,15 +178,14 @@ if app_mode == 'Prediction':
     st.markdown("## Prediction")
     train_size = st.sidebar.number_input("Train Set Size", min_value=0.00, step=0.01, max_value=1.00, value=0.70)
     new_df= df.drop(labels=select_variable, axis=1)  #axis=1 means we drop data by columns
-    list_var = new_df.columns
-    output_multi = st.multiselect("Select Explanatory Variables", list_var)
+    list_var = df["Time_taken(min)"]
 
     def predict(target_choice,train_size,new_df,output_multi):
         #independent variables / explanatory variables
         #choosing column for target
-        new_df2 = new_df[output_multi]
+        new_df2 = new_df["Delivery_person_Age"]
         x =  new_df2
-        y = df[target_choice]
+        y = df["Time_taken(min)"]
         col1,col2 = st.columns(2)
         col1.subheader("Feature Columns top 25")
         col1.write(x.head(25))
@@ -212,10 +216,9 @@ if __name__=='__main__':
 
 st.markdown(" ")
 st.markdown("### 👨🏼‍💻 **App Contributors:** ")
-st.image(['images/gaetan.png'], width=100,caption=["Gaëtan Brison"])
+st.markdown("Emmanuella Abankwah, Yinyi Feng, Sayuri Hadge")
 
 st.markdown(f"####  Link to Project Website [here]({'https://github.com/NYU-DS-4-Everyone/Linear-Regression-App'}) 🚀 ")
-st.markdown(f"####  Feel free to contribute to the app and give a ⭐️")
 
 
 def image(src_as_string, **style):
