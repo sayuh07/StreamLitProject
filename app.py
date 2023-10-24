@@ -160,12 +160,8 @@ def main():
         
         st.pyplot(fig1)
 
-        dfNew = pd.read_csv('deliverytime.csv', 
-                  usecols=['Restaurant_latitude', 'Restaurant_longitude'])
-
-        df.columns = ['latitude', 'longitude']
-
-        st.map(data=dfNew)
+        st.dataframe(df)
+        st.map(data=df, latitude='Restaurant_latitude', longitude='Restaurant_longitude')
         
         
         #tab2.subheader("Correlation Tab 📉")
