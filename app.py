@@ -156,7 +156,7 @@ def main():
 
         st.write(" ")
         st.write(" ")
-        st.markdown("Pie Chart")
+        st.markdown("## Pie Chart")
         fig1, ax1 = plt.subplots()
         ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
             shadow=True, startangle=90)
@@ -177,7 +177,7 @@ def main():
         
         st.write(" ")
         st.write(" ")
-        st.markdown("### Pairplot")
+        st.markdown("## Pairplot")
         
         df2 = df[[list_variables[0],list_variables[1],list_variables[2],list_variables[3],list_variables[4]]]
         fig3 = sns.pairplot(df2)
@@ -195,7 +195,7 @@ def main():
 
         st.write(" ")
         st.write(" ")
-        st.markdown("### Delivery Locations")
+        st.markdown("## Delivery Locations")
         df['Delivery_location_latitude'] = pd.to_numeric(df['Delivery_location_latitude'], errors='coerce')
         df['Delivery_location_longitude'] = pd.to_numeric(df['Delivery_location_longitude'], errors='coerce')
         # Display the map
