@@ -17,6 +17,7 @@ from htbuilder import HtmlElement, div, hr, a, p, img, styles
 from htbuilder.units import percent, px
 import pandas_profiling
 from streamlit_pandas_profiling import st_profile_report
+from codecarbon import EmissionsTracker
 
 
 
@@ -176,6 +177,11 @@ def main():
         df2 = df[[list_variables[0],list_variables[1],list_variables[2],list_variables[3],list_variables[4]]]
         fig3 = sns.pairplot(df2)
         st.pyplot(fig3)
+
+    tracker = EmissionsTracker()
+    tracker.start()
+    #ml training
+    tracker.stop()
     
     
     
