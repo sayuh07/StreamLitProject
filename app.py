@@ -159,6 +159,9 @@ def main():
         ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
         
         st.pyplot(fig1)
+
+        st.map(data=df, latitude= 'Restaurant_latitude', longitude= 'Restaurant_longitude')
+        
         
         #tab2.subheader("Correlation Tab 📉")
         #fig,ax = plt.subplots(figsize=(width1, width1))
