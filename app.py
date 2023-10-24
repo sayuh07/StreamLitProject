@@ -182,7 +182,7 @@ def main():
 
         st.write(" ")
         st.write(" ")
-        tab1.subheader("Restaurant Locations")
+        st.markdown("### Restaurant Locations")
         df['Restaurant_latitude'] = pd.to_numeric(df['Restaurant_latitude'], errors='coerce')
         df['Restaurant_longitude'] = pd.to_numeric(df['Restaurant_longitude'], errors='coerce')
         # Display the map
@@ -192,7 +192,7 @@ def main():
 
         st.write(" ")
         st.write(" ")
-        tab1.subheader("Delivery Locations")
+        st.markdown("### Delivery Locations")
         df['Delivery_location_latitude'] = pd.to_numeric(df['Delivery_location_latitude'], errors='coerce')
         df['Delivery_location_longitude'] = pd.to_numeric(df['Delivery_location_longitude'], errors='coerce')
         # Display the map
