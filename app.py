@@ -160,7 +160,7 @@ def main():
         
         st.pyplot(fig1)
 
-        st.map(df, latitude=df['Restaurant_latitude'], longitude=df['Restaurant_longitude'])
+        st.map(df, latitude='Restaurant_latitude', longitude='Restaurant_longitude')
         
         
         #tab2.subheader("Correlation Tab 📉")
