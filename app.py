@@ -152,7 +152,8 @@ def main():
         labels = 'motorcycle', 'scooter', 'electric_scooter', 'bicycle'
         sizes = df["Type_of_vehicle"].value_counts()
         explode = (0.1, 0, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
-        
+
+        tab1.subheader("Pie Chart")
         fig1, ax1 = plt.subplots()
         ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
             shadow=True, startangle=90)
@@ -179,12 +180,19 @@ def main():
         fig3 = sns.pairplot(df2)
         st.pyplot(fig3)
 
+        st.write(" ")
+        st.write(" ")
+        tab1.subheader("Restaurant Locations")
         df['Restaurant_latitude'] = pd.to_numeric(df['Restaurant_latitude'], errors='coerce')
         df['Restaurant_longitude'] = pd.to_numeric(df['Restaurant_longitude'], errors='coerce')
         # Display the map
         # Display the map with explicitly specified latitude and longitude columns
         st.map(data=df, latitude='Restaurant_latitude', longitude='Restaurant_longitude', color='#EB340C')
-    
+
+
+        st.write(" ")
+        st.write(" ")
+        tab1.subheader("Delivery Locations")
         df['Delivery_location_latitude'] = pd.to_numeric(df['Delivery_location_latitude'], errors='coerce')
         df['Delivery_location_longitude'] = pd.to_numeric(df['Delivery_location_longitude'], errors='coerce')
         # Display the map
