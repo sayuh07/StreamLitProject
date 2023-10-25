@@ -32,8 +32,8 @@ st.set_page_config(
 def predict(target_choice,train_size,new_df,output_multi):
     #independent variables / explanatory variables
     #choosing column for target
-    #new_df2 = new_df[["Delivery_person_Age", "Delivery_person_Ratings"]]
-    x = new_df[["Delivery_person_Age", "Delivery_person_Ratings"]]
+    #new_df2 = new_df[["Delivery_person_Age", "Delivery_person_Ratings", "Restaurant_latitude", "Restaurant_longitude", "Delivery_location_latitude", "Delivery_location_longitude"]]
+    x = new_df[["Delivery_person_Age", "Delivery_person_Ratings", "Restaurant_latitude", "Restaurant_longitude", "Delivery_location_latitude", "Delivery_location_longitude"]]
     y = new_df["Time_taken(min)"]
     col1,col2 = st.columns(2)
     col1.subheader("Feature Columns top 25")
