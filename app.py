@@ -100,7 +100,25 @@ def main():
         
         
         st.markdown("### 00 - Show  Dataset")
-        col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
+        col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns(9)
+        col1.markdown(" **Delivery Person Age** ")
+        col1.markdown("Age of the person delivering the food")
+        col2.markdown(" **Delivery Person Rating** ")
+        col2.markdown("Rating of the delivery person")
+        col3.markdown(" **Restaurant Latitude** ")
+        col3.markdown("Latitude of Restaurant Location")
+        col4.markdown(" **Restaurant Longitude** ")
+        col4.markdown("Longitude of Restaurant Location")
+        col5.markdown(" **Delivery Location Latitude** ")
+        col5.markdown(""Latitude of Delivery Location")
+        col6.markdown(" **Delivery Location Longitude** ")
+        col6.markdown("Longitude of Delivery Location")
+        col7.markdown(" **Type of Order** ")
+        col7.markdown("Type of food ordered.")
+        col8.markdown(" **Type of Vehicle** ")
+        col8.markdown("Type of vehicle delivering food")
+        col9.markdown(" **Time Taken to Deliver(mins(** ")
+        col9.markdown("How long the food took to deliver")
         
         st.text('This dataset is used to predict the time taken by the delivery person to deliver the food from the restaurant to the delivery location. With the help of the variables (age of the delivery person, previous rating and distance between restaurant and delivery location), we can use a prediction model.')
         
