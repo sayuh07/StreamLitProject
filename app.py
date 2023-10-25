@@ -110,7 +110,7 @@ def main():
         col4.markdown(" **Restaurant Longitude** ")
         col4.markdown("Longitude of Restaurant Location")
         col5.markdown(" **Delivery Location Latitude** ")
-        col5.markdown(""Latitude of Delivery Location")
+        col5.markdown("Latitude of Delivery Location")
         col6.markdown(" **Delivery Location Longitude** ")
         col6.markdown("Longitude of Delivery Location")
         col7.markdown(" **Type of Order** ")
