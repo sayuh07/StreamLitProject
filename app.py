@@ -29,6 +29,24 @@ st.set_page_config(
 )
 
 
+def predict(target_choice,train_size,new_df,output_multi):
+    #independent variables / explanatory variables
+    #choosing column for target
+    #new_df2 = new_df[["Delivery_person_Age", "Delivery_person_Ratings"]]
+    x = new_df[["Delivery_person_Age", "Delivery_person_Ratings"]]
+    y = new_df["Time_taken(min)"]
+    col1,col2 = st.columns(2)
+    col1.subheader("Feature Columns top 25")
+    col1.write(x.head(25))
+    col2.subheader("Target Column top 25")
+    col2.write(y.head(25))
+    X_train, X_test, y_train, y_test = train_test_split(x,y,test_size=train_size)
+    lm = LinearRegression()
+    lm.fit(X_train,y_train)
+    predictions = lm.predict(X_test)
+    
+    return X_train, X_test, y_train, y_test, predictions,x,y
+
 def main():
     def _max_width_():
         max_width_str = f"max-width: 1000px;"
@@ -206,9 +224,9 @@ def main():
     if app_mode == 'Prediction':
         st.markdown("## Prediction")
         train_size = st.sidebar.number_input("Train Set Size", min_value=0.00, step=0.01, max_value=1.00, value=0.70)
-        new_df= df.drop(labels=select_variable, axis=1)  #axis=1 means we drop data by columns
+        #new_df= df.drop(labels=select_variable, axis=1)  #axis=1 means we drop data by columns
         list_var = df["Time_taken(min)"]
-        X_train, X_test, y_train, y_test, predictions,x,y= predict(select_variable,train_size,new_df,list_var)
+        X_train, X_test, y_train, y_test, predictions,x,y= predict(select_variable,train_size,df,list_var)
     
         st.subheader('🎯 Results')
 
@@ -223,24 +241,6 @@ def main():
     st.markdown("Emmanuella Abankwah, Yinyi Feng, Sayuri Hadge")
     st.markdown(f"####  Link to Project Website [here]({'https://github.com/NYU-DS-4-Everyone/Linear-Regression-App'}") 
 
-
-def predict(target_choice,train_size,new_df,output_multi):
-    #independent variables / explanatory variables
-    #choosing column for target
-    #new_df2 = new_df[["Delivery_person_Age", "Delivery_person_Ratings"]]
-    x = new_df[["Delivery_person_Age", "Delivery_person_Ratings"]]
-    y = new_df["Time_taken(min)"]
-    col1,col2 = st.columns(2)
-    col1.subheader("Feature Columns top 25")
-    col1.write(x.head(25))
-    col2.subheader("Target Column top 25")
-    col2.write(y.head(25))
-    X_train, X_test, y_train, y_test = train_test_split(x,y,test_size=train_size)
-    lm = LinearRegression()
-    lm.fit(X_train,y_train)
-    predictions = lm.predict(X_test)
-    
-    return X_train, X_test, y_train, y_test, predictions,x,y
        
 
 
