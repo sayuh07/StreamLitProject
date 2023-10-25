@@ -85,8 +85,8 @@ def main():
         col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
         
         st.text('This dataset is used to predict the time taken by the delivery person to deliver the food from 
-        \nthe restaurant to the delivery location. With the help of the variables (age of the delivery person, 
-        \nprevious rating and distance between restaurant and delivery location), we can use a prediction model.')
+        the restaurant to the delivery location. With the help of the variables (age of the delivery person, 
+        previous rating and distance between restaurant and delivery location), we can use a prediction model.')
         
         # Allow users to view either the top or bottom rows of the dataset
         num = st.number_input('No. of Rows', 5, 10)
