@@ -233,9 +233,9 @@ def main():
         def predict(target_choice,train_size,new_df,output_multi):
             #independent variables / explanatory variables
             #choosing column for target
-            new_df2 = new_df[output_multi]
-            x =  new_df2
-            y = df[target_choice]
+            #new_df2 = new_df[output_multi]
+            x =  new_df[['Delivery_person_Age', 'Delivery_person_Ratings', 'Restaurant_latitude', 'Restaurant_longitude', 'Delivery_location_latitude', 'Delivery_location_longitude']]
+            y = df['Time_taken(min)']
             col1,col2 = st.columns(2)
             col1.subheader("Feature Columns top 25")
             col1.write(x.head(25))
