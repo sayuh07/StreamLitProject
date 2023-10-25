@@ -151,7 +151,7 @@ def main():
         st.markdown("### 04 - Complete Report")
         if st.button("Generate Report"):
         
-            pr = df.profile_report()
+            pr = df.profile_report(minimal=True)
             st_profile_report(pr)
     
     
