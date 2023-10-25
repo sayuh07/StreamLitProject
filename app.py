@@ -221,7 +221,7 @@ def main():
     st.markdown(" ")
     st.markdown("### 👨🏼‍💻 **App Contributors:** ")
     st.markdown("Emmanuella Abankwah, Yinyi Feng, Sayuri Hadge")
-    st.markdown(f"####  Link to Project Website [here]({'https://github.com/NYU-DS-4-Everyone/Linear-Regression-App'}) 
+    st.markdown(f"####  Link to Project Website [here]({'https://github.com/NYU-DS-4-Everyone/Linear-Regression-App'}") 
 
 
 def predict(target_choice,train_size,new_df,output_multi):
