@@ -151,7 +151,7 @@ def main():
         
         labels = 'motorcycle', 'scooter', 'electric_scooter', 'bicycle'
         sizes = df["Type_of_vehicle"].value_counts()
-        explode = (0.1, 0, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
+        explode = (0.1, 0, 0, 0)
 
 
         st.write(" ")
@@ -221,13 +221,11 @@ def main():
     st.markdown(" ")
     st.markdown("### 👨🏼‍💻 **App Contributors:** ")
     st.markdown("Emmanuella Abankwah, Yinyi Feng, Sayuri Hadge")
-    st.markdown(f"####  Link to Project Website [here]({'https://github.com/NYU-DS-4-Everyone/Linear-Regression-App'}) 🚀 ")
+    st.markdown(f"####  Link to Project Website [here]({'https://github.com/sayuh07/StreamLitProject/tree/main'}) 🚀 ")
 
 
 def predict(target_choice,train_size,new_df,output_multi):
     #independent variables / explanatory variables
-    #choosing column for target
-    #new_df2 = new_df[["Delivery_person_Age", "Delivery_person_Ratings"]]
     x = new_df[["Delivery_person_Age", "Delivery_person_Ratings"]]
     y = new_df["Time_taken(min)"]
     col1,col2 = st.columns(2)
@@ -311,7 +309,7 @@ def layout(*args):
 def footer2():
     myargs = [
         "👨🏼‍💻 Made by ",
-        link("https://github.com/NYU-DS-4-Everyone", "NYU - Professor Gaëtan Brison"),
+        link("https://github.com/sayuh07/StreamLitProject/tree/main", "NYU - Emmanuella Abankwah, Yinyi Feng, Sayuri Hadge"),
         "🚀"
     ]
     layout(*myargs)
