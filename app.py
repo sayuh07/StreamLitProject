@@ -203,44 +203,78 @@ def main():
     
     
     
+    # if app_mode == 'Prediction':
+    #     st.markdown("## Prediction")
+    #     train_size = st.sidebar.number_input("Train Set Size", min_value=0.00, step=0.01, max_value=1.00, value=0.70)
+    #     new_df= df.drop(labels=select_variable, axis=1)  #axis=1 means we drop data by columns
+    #     list_var = df["Time_taken(min)"]
+    #     X_train, X_test, y_train, y_test, predictions,x,y= predict(select_variable,train_size,new_df,list_var)
+    
+    #     st.subheader('🎯 Results')
+
+
+    #     st.write("1) The model explains,", np.round(mt.explained_variance_score(y_test, predictions)*100,2),"% variance of the target feature")
+    #     st.write("2) The Mean Absolute Error of model is:", np.round(mt.mean_absolute_error(y_test, predictions ),2))
+    #     st.write("3) MSE: ", np.round(mt.mean_squared_error(y_test, predictions),2))
+    #     st.write("4) The R-Square score of the model is " , np.round(mt.r2_score(y_test, predictions),2))
+    
+    # st.markdown(" ")
+    # st.markdown("### 👨🏼‍💻 **App Contributors:** ")
+    # st.markdown("Emmanuella Abankwah, Yinyi Feng, Sayuri Hadge")
+    # st.markdown(f"####  Link to Project Website [here]({'https://github.com/sayuh07/StreamLitProject/tree/main'}) 🚀 ")
+    
     if app_mode == 'Prediction':
         st.markdown("## Prediction")
         train_size = st.sidebar.number_input("Train Set Size", min_value=0.00, step=0.01, max_value=1.00, value=0.70)
         new_df= df.drop(labels=select_variable, axis=1)  #axis=1 means we drop data by columns
-        list_var = df["Time_taken(min)"]
-        X_train, X_test, y_train, y_test, predictions,x,y= predict(select_variable,train_size,new_df,list_var)
+        list_var = new_df.columns
+        output_multi = st.multiselect("Select Explanatory Variables", list_var)
     
-        st.subheader('🎯 Results')
-
-
-        st.write("1) The model explains,", np.round(mt.explained_variance_score(y_test, predictions)*100,2),"% variance of the target feature")
-        st.write("2) The Mean Absolute Error of model is:", np.round(mt.mean_absolute_error(y_test, predictions ),2))
-        st.write("3) MSE: ", np.round(mt.mean_squared_error(y_test, predictions),2))
-        st.write("4) The R-Square score of the model is " , np.round(mt.r2_score(y_test, predictions),2))
+        def predict(target_choice,train_size,new_df,output_multi):
+            #independent variables / explanatory variables
+            #choosing column for target
+            new_df2 = new_df[output_multi]
+            x =  new_df2
+            y = df[target_choice]
+            col1,col2 = st.columns(2)
+            col1.subheader("Feature Columns top 25")
+            col1.write(x.head(25))
+            col2.subheader("Target Column top 25")
+            col2.write(y.head(25))
+            X_train, X_test, y_train, y_test = train_test_split(x,y,test_size=train_size)
+            lm = LinearRegression()
+            lm.fit(X_train,y_train)
+            predictions = lm.predict(X_test)
     
-    st.markdown(" ")
-    st.markdown("### 👨🏼‍💻 **App Contributors:** ")
-    st.markdown("Emmanuella Abankwah, Yinyi Feng, Sayuri Hadge")
-    st.markdown(f"####  Link to Project Website [here]({'https://github.com/sayuh07/StreamLitProject/tree/main'}) 🚀 ")
+            return X_train, X_test, y_train, y_test, predictions,x,y
+
+    X_train, X_test, y_train, y_test, predictions,x,y= predict(select_variable,train_size,new_df,list_var)
+
+    st.subheader('🎯 Results')
 
 
-def predict(target_choice,train_size,new_df,output_multi):
-    #independent variables / explanatory variables
-    new_df2 = new_df[output_multi]
-    x =  new_df2
-    #x = new_df[["Delivery_person_Age", "Delivery_person_Ratings"]]
-    y = new_df["Time_taken(min)"]
-    col1,col2 = st.columns(2)
-    col1.subheader("Feature Columns top 25")
-    col1.write(x.head(25))
-    col2.subheader("Target Column top 25")
-    col2.write(y.head(25))
-    X_train, X_test, y_train, y_test = train_test_split(x,y,test_size=train_size)
-    lm = LinearRegression()
-    lm.fit(X_train,y_train)
-    predictions = lm.predict(X_test)
+    st.write("1) The model explains,", np.round(mt.explained_variance_score(y_test, predictions)*100,2),"% variance of the target feature")
+    st.write("2) The Mean Absolute Error of model is:", np.round(mt.mean_absolute_error(y_test, predictions ),2))
+    st.write("3) MSE: ", np.round(mt.mean_squared_error(y_test, predictions),2))
+    st.write("4) The R-Square score of the model is " , np.round(mt.r2_score(y_test, predictions),2))
+
+# def predict(target_choice,train_size,new_df,output_multi):
+#     #independent variables / explanatory variables
+#     new_df2 = new_df[output_multi]
+#     x =  new_df2
+#     #x = new_df[["Delivery_person_Age", "Delivery_person_Ratings"]]
+#     y = new_df["Time_taken(min)"]
+#     col1,col2 = st.columns(2)
+#     col1.subheader("Feature Columns top 25")
+#     col1.write(x.head(25))
+#     col2.subheader("Target Column top 25")
+#     col2.write(y.head(25))
+#     X_train, X_test, y_train, y_test = train_test_split(x,y,test_size=train_size)
+#     lm = LinearRegression()
+#     lm.fit(X_train,y_train)
+#     predictions = lm.predict(X_test)
     
-    return X_train, X_test, y_train, y_test, predictions,x,y
+#     return X_train, X_test, y_train, y_test, predictions,x,y
        
 
 
