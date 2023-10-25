@@ -175,7 +175,7 @@ def main():
     
     if app_mode == 'Visualization':
         st.markdown("## Visualization")
-        symbols = st.multiselect("Select two variables",list_variables,["Delivery_person_Age", "Type_of_vehicle", "Time_taken(min)"])
+        symbols = st.multiselect("Select two variables",list_variables,["Delivery_person_Ratings", "Time_taken(min)"])
         width1 = st.sidebar.slider("plot width", 1, 25, 10)
         #symbols = st.multiselect("", list_variables, list_variables[:5])
         tab1, tab2= st.tabs(["Line Chart","📈 Correlation"])    
