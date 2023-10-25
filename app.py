@@ -187,10 +187,10 @@ def main():
         # Also, make sure that the data in these columns is in numeric format (float or int)
   
         
-        #tab2.subheader("Correlation Tab 📉")
-        #fig,ax = plt.subplots(figsize=(width1, width1))
-        #sns.heatmap(df.corr(),cmap= sns.cubehelix_palette(8),annot = True, ax=ax)
-        #tab2.write(fig)
+        tab2.subheader("Correlation Tab 📉")
+        fig,ax = plt.subplots(figsize=(width1, width1))
+        sns.heatmap(df.corr(),cmap= sns.cubehelix_palette(8),annot = True, ax=ax)
+        tab2.write(fig)
         
         
         st.write(" ")
