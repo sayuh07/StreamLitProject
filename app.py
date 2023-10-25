@@ -239,7 +239,7 @@ def main():
     st.markdown(" ")
     st.markdown("### 👨🏼‍💻 **App Contributors:** ")
     st.markdown("Emmanuella Abankwah, Yinyi Feng, Sayuri Hadge")
-    st.markdown(f"####  Link to Project Website [here]({'https://github.com/sayuh07/StreamLitProject/blob/main/app.py'})") 
+    st.markdown(f"####  Link to Project Website [here]({'https://github.com/sayuh07/StreamLitProject/blob/main/app.py'}) 🚀") 
 
        
 
