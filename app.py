@@ -73,7 +73,7 @@ def main():
     df = pd.read_csv("deliverytime.csv")
     
     
-    list_variables = df.columns
+    list_variables = df.columns["Delivery_person_Age", "Delivery_person_Ratings", "Restaurant_latitude", "Restaurant_longitude", "Delivery_location_latitude", "Delivery_location_longitude"]
     select_variable =  st.sidebar.selectbox('🎯 Select Variable to Predict',list_variables)
     # page 1 
     if app_mode == 'Introduction':
