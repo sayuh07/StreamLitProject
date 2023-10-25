@@ -84,8 +84,7 @@ def main():
         st.markdown("### 00 - Show  Dataset")
         col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
         
-        # Descriptions for each variable in the dataset
-        # ... [The code here provides descriptions for each wine quality variable]
+        st.text('This dataset is used to predict the time taken by the delivery person to deliver the food from the restaurant to the delivery location. With the help of the variables (age of the delivery person, previous rating and distance between restaurant and delivery location), we can use a prediction model.')
         
         # Allow users to view either the top or bottom rows of the dataset
         num = st.number_input('No. of Rows', 5, 10)
@@ -101,6 +100,7 @@ def main():
         st.write(df.shape)
         
         st.markdown("### 01 - Description")
+        st.text('A preview of the dataset')
         st.dataframe(df.describe())
         
         
