@@ -25,8 +25,9 @@ data_url = "https://www.kaggle.com/datasets/rajatkumar30/food-delivery-time"
 # setting up the page streamlit
 
 st.set_page_config(
-    page_title="Streamlit Food Delivery Time App", layout="wide", page_icon="./images/linear-regression.png"
+    page_title="Streamlit Food Delivery Time App", layout="wide""
 )
+#page_icon="./images/linear-regression.png
 
 
 def predict(target_choice,train_size,new_df,output_multi):
